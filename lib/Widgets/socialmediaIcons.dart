@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:url_launcher/url_launcher.dart';
+import 'package:mytest/start.dart';
 
 // ignore: must_be_immutable
 class SocialMediaIcons extends StatelessWidget {
   String socialmediaicon;
   String socialmedialinks;
-  SocialMediaIcons({super.key, required this.socialmediaicon,
-  required this.socialmedialinks});
+  SocialMediaIcons(
+      {super.key,
+      required this.socialmediaicon,
+      required this.socialmedialinks});
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +22,16 @@ class SocialMediaIcons extends StatelessWidget {
             backgroundImage: AssetImage('asset/$socialmediaicon'),
           ),
           onTap: () {
-            launchUrl(Uri.parse(socialmedialinks),mode: LaunchMode.externalApplication);
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) {
+                  return StartBranch(
+                    socialmedialinks: socialmedialinks,
+                  );
+                },
+              ),
+            );
           },
         ),
       ),

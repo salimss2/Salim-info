@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:mytest/start.dart';
+// import 'package:mytest/start.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 // ignore: must_be_immutable
 class SocialMediaIcons extends StatelessWidget {
@@ -22,16 +23,32 @@ class SocialMediaIcons extends StatelessWidget {
             backgroundImage: AssetImage('asset/$socialmediaicon'),
           ),
           onTap: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) {
-                  return StartBranch(
-                    socialmedialinks: socialmedialinks,
-                  );
-                },
-              ),
-            );
+            showModalBottomSheet(context: context, builder: (context) {
+              return 
+          ElevatedButton(
+          style: ButtonStyle(
+            backgroundColor: WidgetStatePropertyAll(Colors.deepOrange),
+          ),
+          onPressed: () {
+            launchUrl(Uri.parse(socialmedialinks),
+                mode: LaunchMode.externalApplication);
+          },
+          child: Text(
+            'Start SocialMedia',
+            style: TextStyle(color: Colors.white),
+          ),
+        );
+            },);
+            // Navigator.push(
+            //   context,
+            //   MaterialPageRoute(
+            //     builder: (context) {
+            //       return StartBranch(
+            //         socialmedialinks: socialmedialinks,
+            //       );
+            //     },
+            //   ),
+            // );
           },
         ),
       ),
